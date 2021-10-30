@@ -1,4 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Palanquin:wght@400;500;700&family=Roboto:wght@400;500;700;900&display=swap');
+
 /* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+body {
+  @apply bg-white-theme flex flex-col items-center w-screen min-h-screen
+}

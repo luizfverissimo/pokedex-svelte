@@ -16,5 +16,10 @@
     "cssnano": "^5.0.8",
     "tailwindcss": "^2.2.16"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "svelte-fa": "^2.3.3"
+  }
 }
