@@ -5,7 +5,58 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-  @apply bg-white-theme flex flex-col items-center w-screen min-h-screen
+  @apply flex flex-col items-center w-screen min-h-screen bg-white-theme;
+}
+
+.grass {
+  background-color: #9dcfab;
+}
+.psychic {
+  background-color: #c975d6;
+}
+.water {
+  background-color: #8ea9f0;
+}
+.poison {
+  background-color: #ad9dcf;
+}
+.fire {
+  background-color: #e9a36a;
+}
+.dragon {
+  background-color: #bba591;
+}
+.electric {
+  background-color: #e7e48b;
+}
+.rock {
+  background-color: #9e9e9e;
+}
+.fighting {
+  background-color: #dd6f6f;
+}
+.ground {
+  background-color: #cf8e52;
+}
+.bug {
+  background-color: #c2dd76;
+}
+.ghost {
+  background-color: #d3b0f0;
+}
+.flying {
+  background-color: #6dc8e4;
+}
+.ice {
+  background-color: #c3e8f3;
+}
+.normal {
+  background-color: #dfca91;
+}
+.fairy {
+  background-color: #f1d4f7;
+}
+.steel {
+  background-color: #b1b1b1;
 }
