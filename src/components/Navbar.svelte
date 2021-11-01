@@ -1,23 +1,36 @@
 <script>
   import Fa from 'svelte-fa/src/fa.svelte';
+  import { fade } from 'svelte/transition';
   import { faHeart, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
   import { faGithub } from '@fortawesome/free-brands-svg-icons';
+
+  export let isWhite;
 </script>
 
-<header class="flex items-center justify-between w-screen py-4 max-w-7xl">
+<header
+  class={`${
+    isWhite ? 'text-white-theme' : 'text-gray-500-theme'
+  } flex items-center justify-between w-screen py-4 max-w-7xl`}
+  transition:fade
+>
   <a
     href="/"
-    class="font-bold uppercase transition-all font-palanquin text-gray-500-theme hover:brightness-75"
+    class="font-bold uppercase transition-all font-palanquin hover:brightness-90"
     >pokedex</a
   >
-  <nav class="flex gap-3 text-2xl text-gray-500-theme">
-    <a href="/" class="transition-all hover:brightness-75">
+  <nav class="flex gap-3 text-2xl">
+    <a href="/favorites" class="transition-all hover:brightness-90">
       <Fa icon={faHeart} />
     </a>
-    <a href="/" class="transition-all hover:brightness-75">
+    <a href="/about" class="transition-all hover:brightness-90">
       <Fa icon={faInfoCircle} />
     </a>
-    <a href="/" class="transition-all hover:brightness-75">
+    <a
+      href="https://github.com/luizfverissimo/pokedex-svelte"
+      target="_black"
+      rel="noreferer noopener"
+      class="transition-all hover:brightness-90"
+    >
       <Fa icon={faGithub} />
     </a>
   </nav>

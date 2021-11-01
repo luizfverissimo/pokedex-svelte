@@ -1,7 +1,9 @@
 <script>
-import Title from "../components/Title.svelte";
 
 </script>
 
-<Title title='About page' />
+<svelte:head>
+  <title>Pokedex | LF Verissimo</title>
+</svelte:head>
+
 <a href="/" > Voltar</a>
