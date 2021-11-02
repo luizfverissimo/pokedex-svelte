@@ -19,7 +19,7 @@
 {#if pokeData}
   <div
     class="group bg-white w-[320px] relative flex flex-col items-center p-4 z-10 rounded-lg shadow-xl min-h-[300px] overflow-hidden transition-all transform hover:scale-105 hover:shadow-2xl"
-    transition:fade
+    transition:fade|local
   >
     <div
       class={`${pokeData.types[0].type.name} absolute top-0 w-full h-[180px] z-[-1]`}
@@ -30,15 +30,15 @@
       <FavButton pokemonName={pokeData.name} />
       <p class="text-4xl font-bold opacity-50 font-palanquin">#{number}</p>
     </div>
-    <a href="/details">
+    <a href={`/details?id=${pokeData.id}`}>
       <img
         class="max-h-[200px] min-h-[150px] w-auto transition-all transform group-hover:-rotate-6 group-hover:drop-shadow-xl"
         src={pokeData.sprites.other['official-artwork'].front_default}
         alt={`Image of ${pokeData.name}`}
-        transition:fade
+        transition:fade|local
       />
     </a>
-    <a href="/details" class="pb-2 overflow-hidden">
+    <a href={`/details?id=${pokeData.id}`} class="pb-2 overflow-hidden">
       <h2
         class="relative text-2xl font-bold uppercase font-palanquin text-black-theme"
       >

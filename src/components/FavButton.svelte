@@ -39,7 +39,7 @@
   }
 </script>
 
-<button class="transition-all transform hover:scale-110 hover:brightness-90" transition:fade on:click={handleFav}>
+<button class="transition-all transform hover:scale-110 hover:brightness-90" transition:fade|local on:click={handleFav}>
   {#if isFav}
     <Fa icon={faHeart} />
   {:else}
