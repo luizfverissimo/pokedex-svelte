@@ -1,14 +1,41 @@
 <script context="module">
-  export async function load({fetch, page}) {
-    const id = page.query.get('id')
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-    const data  = await res.json()
+  export async function load({ fetch, page }) {
+    const id = page.query.get('id');
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const data = await res.json();
+
+    const resCharacteristic = await fetch(
+      `https://pokeapi.co/api/v2/characteristic/${id}`
+    );
+    const dataCharacteristic = await resCharacteristic.json();
+
+    const [{ description }] = dataCharacteristic.descriptions.filter(
+      (item) => item.language.name === 'en'
+    );
+
+    let abilities = [];
+    const promises = data.abilities.map(async (item, index) => {
+      return new Promise(async (resolve, reject) => {
+        const res = await fetch(item.ability.url);
+        const data = await res.json();
+
+        const [{ effect }] = data.effect_entries.filter(
+          (item) => item.language.name === 'en'
+        );
+        abilities[index] = effect;
+        return resolve();
+      });
+    });
+
+    await Promise.all(promises);
 
     return {
       props: {
-        pokeData: data
+        pokeData: data,
+        infoText: description,
+        abilitiesText: abilities
       }
-    }
+    };
   }
 </script>
 
@@ -24,14 +51,15 @@
   import bulbaData from '../bulba.json'; //remove
 
   export let pokeData = bulbaData;
+  export let infoText
+  export let abilitiesText
   let sectionActive = 'stats';
 
   function changeDetails(section) {
-    sectionActive = section
+    sectionActive = section;
     status.set(sectionActive === 'stats');
-    return
+    return;
   }
-
 </script>
 
 <svelte:head>
@@ -58,24 +86,21 @@
   <section class="flex items-center justify-center w-full gap-4">
     <DetailsButton
       isActive={sectionActive === 'about'}
-      type={pokeData.types[0].type.name}
       on:click={() => changeDetails('about')}>about</DetailsButton
     >
     <DetailsButton
       isActive={sectionActive === 'stats'}
-      type={pokeData.types[0].type.name}
       on:click={() => changeDetails('stats')}>stats</DetailsButton
     >
     <DetailsButton
       isActive={sectionActive === 'evolution'}
-      type={pokeData.types[0].type.name}
       on:click={() => changeDetails('evolution')}>evolution</DetailsButton
     >
   </section>
 
   <section class="flex flex-col w-full h-[400px] max-w-lg mb-8">
     {#if sectionActive === 'about'}
-      <AboutCard {pokeData} />
+      <AboutCard {pokeData} {infoText} {abilitiesText}/>
     {/if}
     {#if sectionActive === 'stats'}
       <StatsCard {pokeData} />

@@ -2,8 +2,7 @@
   import { onMount } from 'svelte';
 
   import PokeballIcon from './PokeballIcon.svelte';
-
-  export let type;
+  
   export let isActive;
 
   onMount(() => {});
@@ -15,7 +14,7 @@
   } hover:text-black-theme`}
   on:click
 >
-  <div class:type>
+  <div>
     {#if isActive}
       <PokeballIcon />
     {/if}

@@ -1,9 +1,51 @@
+<!-- <script context="module">
+  export async function load({ fetch }) {
+    const resCharacteristic = await fetch(
+      `https://pokeapi.co/api/v2/characteristic/${pokeData.id}`
+    );
+    const dataCharacteristic = await resCharacteristic.json();
+
+    const [{ description }] = dataCharacteristic.descriptions.filter(
+      (item) => item.language.name === 'en'
+    );
+
+    let abilities = [];
+    pokeData.abilities.forEach(async (item, index) => {
+      const res = await fetch(item.ability.url);
+      const data = await res.json();
+
+      const [{ effect }] = data.effect_entries.filter(
+        (item) => item.language.name === 'en'
+      );
+      abilities[index] = effect;
+    });
+
+    console.log(abilities, description);
+    return {
+      props: {
+        infoText: description,
+        abilitiesText: abilities
+      }
+    };
+  }
+</script> -->
+
 <script>
+  import { onMount } from 'svelte';
+
   import { fly } from 'svelte/transition';
   export let pokeData;
 
-  function getAbility(name) {
-    console.log(name);
+  export let infoText;
+  export let abilitiesText;
+
+  // onMount(() => {
+  //   fetchCharacteristic(pokeData.id)
+  //   fetchAbilitiesText(pokeData.abilities)
+  // })
+
+  function showAbility(index) {
+    console.log(abilitiesText[index]);
   }
 </script>
 
@@ -25,7 +67,7 @@
     </div>
   </div>
   <p class="font-roboto text-black-theme">
-    <strong>Characteristics:</strong> A retirar
+    <strong>Characteristics:</strong> "{infoText}"
   </p>
   <p class="font-roboto text-black-theme">
     <strong>Weight:</strong>
@@ -37,10 +79,10 @@
   </p>
   <p class="font-roboto text-black-theme">
     <strong>Abilities:</strong>
-    {#each pokeData.abilities as ability}
+    {#each pokeData.abilities as ability, index}
       <span
-        on:mouseover={() => getAbility(ability.ability.name)}
-        on:focus={() => getAbility(ability.ability.name)}
+        on:mouseover={() => showAbility(index)}
+        on:focus={() => showAbility(index)}
         class="mr-2 underline cursor-help">{ability.ability.name}</span
       >
     {/each}
