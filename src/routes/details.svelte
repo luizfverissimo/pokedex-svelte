@@ -69,7 +69,7 @@
 </svelte:head>
 
 <div
-  class={`${pokeData.types[0].type.name} absolute top-0 w-full h-[280px] z-[-1]`}
+  class={`${pokeData.types[0].type.name} absolute left-0 top-0 w-full h-[280px] z-[-1]`}
 />
 <main class="flex flex-col items-center w-full px-4 mt-6 max-w-7xl xl:px-0">
   <section class="flex flex-col items-center w-full gap-2 mb-8 md:flex-row md:mb-0 md:gap-9">
