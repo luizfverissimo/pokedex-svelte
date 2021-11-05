@@ -4,14 +4,15 @@
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const data = await res.json();
 
-    const resCharacteristic = await fetch(
-      `https://pokeapi.co/api/v2/characteristic/${id}`
-    );
-    const dataCharacteristic = await resCharacteristic.json();
+    const resSpecies = await fetch(data.species.url);
+    const { evolution_chain } = await resSpecies.json();
 
-    const [{ description }] = dataCharacteristic.descriptions.filter(
-      (item) => item.language.name === 'en'
-    );
+    let dataEvolutionChain;
+    if (evolution_chain) {
+      const resEvolutionChain = await fetch(evolution_chain.url);
+      const { chain } = await resEvolutionChain.json();
+      dataEvolutionChain = await evolutionChainFlatter(chain);
+    }
 
     let abilities = [];
     const promises = data.abilities.map(async (item, index) => {
@@ -32,8 +33,8 @@
     return {
       props: {
         pokeData: data,
-        infoText: description,
-        abilitiesText: abilities
+        abilitiesText: abilities,
+        evolutionChain: dataEvolutionChain
       }
     };
   }
@@ -48,11 +49,12 @@
   import { padder } from '$utils/padder';
   import { status } from '../stores/changeDetails';
 
-  import bulbaData from '../bulba.json'; //remove
+  import EvolutionCard from '$components/EvolutionCard.svelte';
+  import { evolutionChainFlatter } from '$utils/evolutionChainFlatter';
 
-  export let pokeData = bulbaData;
-  export let infoText
-  export let abilitiesText
+  export let pokeData;
+  export let abilitiesText;
+  export let evolutionChain;
   let sectionActive = 'stats';
 
   function changeDetails(section) {
@@ -69,8 +71,8 @@
 <div
   class={`${pokeData.types[0].type.name} absolute top-0 w-full h-[280px] z-[-1]`}
 />
-<main class="flex flex-col items-center w-full mt-6 max-w-7xl ">
-  <section class="flex items-center w-full gap-9">
+<main class="flex flex-col items-center w-full px-4 mt-6 max-w-7xl xl:px-0">
+  <section class="flex flex-col items-center w-full gap-2 mb-8 md:flex-row md:mb-0 md:gap-9">
     <img
       class="max-h-[250px] min-h-[150px] w-auto transition-all transform hover:rotate-6 hover:drop-shadow-xl"
       src={pokeData.sprites.other['official-artwork'].front_default}
@@ -80,10 +82,10 @@
       <span class="text-3xl text-black-theme"
         >#{padder('000', pokeData.id)}</span
       >
-      <h1 class="text-5xl uppercase text-white-theme">{pokeData.name}</h1>
+      <h1 class="text-5xl uppercase text-gray-500-theme md:text-white-theme">{pokeData.name}</h1>
     </div>
   </section>
-  <section class="flex items-center justify-center w-full gap-4">
+  <section class="flex flex-wrap items-center justify-center w-full gap-4">
     <DetailsButton
       isActive={sectionActive === 'about'}
       on:click={() => changeDetails('about')}>about</DetailsButton
@@ -98,21 +100,13 @@
     >
   </section>
 
-  <section class="flex flex-col w-full h-[400px] max-w-lg mb-8">
+  <section class="flex flex-col w-full min-h-[400px] max-w-lg mb-8">
     {#if sectionActive === 'about'}
-      <AboutCard {pokeData} {infoText} {abilitiesText}/>
-    {/if}
-    {#if sectionActive === 'stats'}
+      <AboutCard {pokeData} {abilitiesText} />
+    {:else if sectionActive === 'stats'}
       <StatsCard {pokeData} />
-    {/if}
-    {#if sectionActive === 'evolution'}
-      <div
-        class="flex flex-col items-start w-full gap-4 p-6 border-2 rounded-lg shadow-xl mt-9"
-        in:fly={{ x: -100, delay: 400, duration: 300 }}
-        out:fly={{ x: 100, duration: 300 }}
-      >
-        evolution
-      </div>
+    {:else if sectionActive === 'evolution'}
+      <EvolutionCard {evolutionChain} pokemonName={pokeData.name}/>
     {/if}
   </section>
 </main>

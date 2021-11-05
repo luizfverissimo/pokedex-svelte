@@ -8,9 +8,10 @@
 </script>
 
 <header
+  id="up"
   class={`${
     isWhite ? 'text-white-theme' : 'text-gray-500-theme'
-  } flex items-center justify-between w-screen py-4 max-w-7xl`}
+  } flex items-center justify-between w-screen py-4 max-w-7xl px-4 xl:px-0`}
   transition:fade|local
 >
   <a

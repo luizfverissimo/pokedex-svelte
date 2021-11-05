@@ -1,6 +1,6 @@
 <script context="module">
   export async function load({ fetch }) {
-    const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=5');
+    const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=150');
     const data = await res.json();
 
     return {
@@ -57,7 +57,7 @@
   <title>Pokedex | LF Verissimo</title>
 </svelte:head>
 
-<main class="flex flex-col items-center justify-center w-full gap-8 max-w-7xl">
+<main class="flex flex-col items-center justify-center w-full gap-8 px-4 max-w-7xl xl:px-0">
   <img
     src="pokedex_logo.min.png"
     alt="Pokedex Logo"
@@ -76,9 +76,9 @@
       />
     </div>
   {/if}
-  <div class="grid w-full grid-cols-3 my-8 gap-9">
+  <div class="flex flex-wrap justify-center w-full mb-8 gap-9">
     {#each pokemonVisible as { name } (name)}
-      <Lazy height={300}>
+      <Lazy height={320}>
         <Card pokemonName={name} />
       </Lazy>
     {/each}

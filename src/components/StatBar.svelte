@@ -14,14 +14,9 @@
   });
 
   onMount(() => {
-    progress.set(stat.base_stat);
+    const newStatValue = (stat.base_stat * 100) / 200
+    progress.set(newStatValue);
   });
-
-  $: {
-    if ($status) {
-      progress.set(stat.base_stat);
-    }
-  }
 </script>
 
 <div class="flex justify-between w-full font-roboto text-black-theme">

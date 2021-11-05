@@ -35,7 +35,7 @@
       />
     </div>
   {/if}
-  <div class="grid w-full grid-cols-3 my-8 gap-9">
+  <div class="w-full flex flex-wrap justify-center gap-9 mb-8">
     {#each pokemonFavorited as pokemon (pokemon)}
       <Lazy height={300}>
         <Card pokemonName={pokemon} />

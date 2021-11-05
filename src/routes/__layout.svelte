@@ -9,8 +9,10 @@
 <script>
   import '../app.css';
   import Navbar from '$components/Navbar.svelte';
+  import UpButton from '$components/UpButton.svelte';
   export let isWhite;
 </script>
 
 <Navbar bind:isWhite />
+<UpButton />
 <slot />
