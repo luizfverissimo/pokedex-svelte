@@ -4,10 +4,6 @@
 
   export let pokeData;
   export let abilitiesText;
-
-  function showAbility(index) {
-    console.log(abilitiesText[index]);
-  }
 </script>
 
 <div
