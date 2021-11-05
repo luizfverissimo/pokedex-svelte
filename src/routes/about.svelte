@@ -1,6 +1,3 @@
-<script>
-</script>
-
 <svelte:head>
   <title>Pokedex | LF Verissimo</title>
 </svelte:head>
