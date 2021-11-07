@@ -1,38 +1,65 @@
-# create-svelte
+<p align="center">
+  <img src="/static/pokedex_logo.min.png" width="100px"/>
+</p>
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+<h1 align="center">pokedex-svelte</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+</p>
 
-## Creating a project
+> ◓ Pokedex created with Svelte, SvelteKit and Tailwind CSS.
 
-If you're seeing this, you've probably already done this step. Congrats!
+### ✨ [Demo](https://pokedex-svelte-lfv.vercel.app/)
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+## Screenshots
+<img src="/img/1.min.png" alt="Screenshot 1" width="500"/>
+<img src="/img/2.min.png" alt="Screenshot 2" width="500"/>
+<img src="/img/3.min.png" alt="Screenshot 3" width="500"/>
+<img src="/img/4.min.png" alt="Screenshot 4" width="500"/>
+<img src="/img/5.min.png" alt="Screenshot 5" width="500"/>
+<img src="/img/6.min.png" alt="Screenshot 6" width="500"/>
 
-# create a new project in my-app
-npm init svelte@next my-app
+
+## Install
+
+```sh
+npm install
 ```
 
-> Note: the `@next` is temporary
+## Usage
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
+```sh
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+## Build
 
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
+```sh
 npm run build
+npm run preview
 ```
 
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+## Deploy
+
+To deploy this projete you will need to install the correct adapter to your host – [SvelteKit Adapters](https://kit.svelte.dev/docs#adapters).
+
+
+## Author
+[<img alt="Logo LF Verissimo - Front-end Developer" src="https://github.com/luizfverissimo/luizfverissimo/blob/8604eedb8ecf5eeb23f8ffae63cfdf8eba6513c3/banner.png?raw=true" />](https://lfverissimo.com)
+
+👤 **LF Verissimo**
+
+* Website: https://lfverissimo.com
+* Github: [@luizfverissimo](https://github.com/luizfverissimo)
+* LinkedIn: [@lfverissimo](https://linkedin.com/in/lfverissimo)
+
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
