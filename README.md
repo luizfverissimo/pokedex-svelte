@@ -44,7 +44,7 @@ npm run preview
 
 ## Deploy
 
-To deploy this projete you will need to install the correct adapter to your host – [SvelteKit Adapters](https://kit.svelte.dev/docs#adapters).
+To deploy this project you will need to install the correct adapter to your host – [SvelteKit Adapters](https://kit.svelte.dev/docs#adapters).
 
 
 ## Author
